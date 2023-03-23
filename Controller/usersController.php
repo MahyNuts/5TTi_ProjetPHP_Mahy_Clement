@@ -12,7 +12,7 @@ if($uri === "/connexion"){
         header('location:/');
     }
     require_once "Templates/users/connexion.php";
-}elseif($uri === "/inscription") {
+}elseif($uri === "/inscriptionOrEditProfile") {
     if(isset($_POST["envoieInfos"])){
         $messageError = verifEmptyData();
         var_dump($messageError);
@@ -22,7 +22,7 @@ if($uri === "/connexion"){
         }
         
     }
-    require_once "Templates/users/inscription.php";
+    require_once "Templates/users/inscriptionOrEditProfile.php";
 } elseif($uri === "/deconnexion") {
     session_destroy();
     header('location:/');
@@ -31,7 +31,7 @@ if($uri === "/connexion"){
 function verifEmptyData(){
     foreach($_POST as $key => $value){
         var_dump($key . ' => ' . $value);
-        if (empty(str_replace('', '', $value))){
+        if (empty($value)){
             $messageError[$key] = "Votre " . $key . " est vide.";
         }
     }

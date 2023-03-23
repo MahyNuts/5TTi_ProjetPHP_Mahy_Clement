@@ -41,7 +41,7 @@
             </div>
             <div class="menuD flex justify-content-center">
                 <li class="menuLi">
-                    <a href="profil" class="menuA">
+                    <a href="inscriptionOrEditProfile" class="menuA">
                         Profil
                     </a>
                 </li>

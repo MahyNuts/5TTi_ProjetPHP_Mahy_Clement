@@ -11,7 +11,7 @@
                     <input type="password" id="motdepasse" name="mot_de_passe">
                 <button type="submit" name="envoieInfos">Se connecter</button>
                 <div>
-                    <p><a href="inscription">Pas encore inscrit ?</a></p>
+                    <p><a href="inscriptionOrEditProfile">Pas encore inscrit ?</a></p>
                 </div>
             </fieldset>
         </form>
