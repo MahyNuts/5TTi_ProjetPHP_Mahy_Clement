@@ -1,4 +1,4 @@
-
+ 
         <form action="" method="post">
             <fieldset>
                 <legend>S'inscrire</legend>
@@ -14,7 +14,7 @@
                 </div>
                 <div class="inpl">
                     <label for="pseudo">Pseudonyme</label>
-                    <input type="text" id="pseudo" name="pseudo" value="<?php if (isset($_SESSION["user"])) : ?><?=$_SESSION["user"]->pseudo ?><?php endif ?>">
+                    <input type="text" id="pseudo" name="pseudo" value="<?php if (isset($_SESSION["user"])) : ?><?=$_SESSION["user"]->pseudo ?><?php echo "disabled='disabled'"?><?php endif ?>">
                     <?php if(isset($messageError["pseudo"])) : ?><small><?= $messageError["pseudo"] ?></small><?php endif ?>
                 </div>
                 <div class="inpl">
