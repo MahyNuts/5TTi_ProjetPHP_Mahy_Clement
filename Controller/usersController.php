@@ -26,6 +26,14 @@ if($uri === "/connexion"){
 } elseif($uri === "/deconnexion") {
     session_destroy();
     header('location:/');
+} elseif($uri === "/profil"){
+    if(isset($_POST["envoieInfos"]))
+    {
+        UpdateUser($pdo);
+        UpdateSession($pdo);
+        header("location/profil");
+    }
+    require_once "Templates/users/inscriptionOrEditProfile.php";
 }
 
 function verifEmptyData(){

@@ -19,7 +19,7 @@
                 </div>
                 <div class="inpl">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" value="<?php if (isset($_SESSION["user"])) : ?><?=$_SESSION["user"]->email ?><?php endif ?>">
+                    <input type="email" id="email" name="email" <?php if (isset($_SESSION["user"])) : ?>disabled=disabled<?php endif ?> value="<?php if (isset($_SESSION["user"])) : ?><?=$_SESSION["user"]->email ?><?php endif ?>">
                     <?php if(isset($messageError["email"])) : ?><small><?= $messageError["email"] ?></small><?php endif ?>
                 </div>
                 <div class="inpl">

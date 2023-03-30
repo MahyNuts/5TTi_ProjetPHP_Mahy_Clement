@@ -15,8 +15,16 @@
 </head>
 <body>
     <header>
+        
         <div class="menu flex justify-content-space-around">
-            <div class="menuG flex justify-content-center">
+            <div class="menug flex justify-content-center">
+                <li class="menuLi">
+                    <a href="index.php" class="menuA">
+                        Accueil
+                    </a>
+                </li>
+            </div>
+            <div class="menuC flex justify-content-center">
                 <li class="menuLi">
                     <?php if(isset($_SESSION['user'])) : ?>
                         <a href="deconnexion" class="menuA">
@@ -29,7 +37,7 @@
                     <?php endif ?>
                 </li>
             </div>
-            <div class="menuC flex justify-content-center">
+            <!-- <div class="menuC flex justify-content-center">
                 <li class="menuLi">
                     <div class="search flex">
                         <input type="text" id="recherche">
@@ -38,10 +46,10 @@
                         </button>
                     </div>
                 </li>
-            </div>
+            </div> -->
             <div class="menuD flex justify-content-center">
                 <li class="menuLi">
-                    <a href="inscriptionOrEditProfile" class="menuA">
+                    <a href="profil" class="menuA">
                         Profil
                     </a>
                 </li>
