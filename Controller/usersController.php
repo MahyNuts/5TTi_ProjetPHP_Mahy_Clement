@@ -33,6 +33,12 @@ if($uri === "/connexion"){
         UpdateSession($pdo);
         header("location/profil");
     }
+    elseif(isset($_POST["envoieSuppression"])){
+        deleteAllUsersSujet($pdo);
+        DeleteUser($pdo);
+        session_destroy();
+        header('location:/');
+    }
     require_once "Templates/users/inscriptionOrEditProfile.php";
 }
 

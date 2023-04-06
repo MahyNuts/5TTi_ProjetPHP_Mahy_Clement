@@ -3,14 +3,14 @@
 function createUser($pdo)
 {
     try {
-        $query = 'insert into utilisateurs(nom, prenom, pseudo, email, motdepasse) values (:nom, :prenom, :pseudo, :email, :motdepasse)';
+        $query = 'insert into users(userNom, userPrenom, userPseudo, userEmail, userMotdepasse) values (:userNom, :userPrenom, :userPseudo, :userEmail, :userMotdepasse)';
         $ajouteUser = $pdo->prepare($query);
         $ajouteUser->execute([
-            'nom' => $_POST["nom"],
-            'prenom' => $_POST["prenom"],
-            'pseudo' => $_POST["pseudo"],
-            'email' => $_POST["email"],
-            'motdepasse' => $_POST["mot_de_passe"]
+            'userNom' => $_POST["nom"],
+            'userPrenom' => $_POST["prenom"],
+            'userPseudo' => $_POST["pseudo"],
+            'userEmail' => $_POST["email"],
+            'userMotdepasse' => $_POST["mot_de_passe"]
         ]);
     } catch (PDOException $e){
         $message = $e->getMessage();
@@ -22,11 +22,11 @@ function createUser($pdo)
 function connexionUser($pdo)
 {
     try {
-        $query = "select * from utilisateurs where email = :email and motdepasse = :motdepasse";
+        $query = "select * from users where userEmail = :userEmail and userMotdepasse = :userMotdepasse";
         $connectUser = $pdo->prepare($query);
         $connectUser->execute([
-            'email' => $_POST["email"],
-            'motdepasse' => $_POST["mot_de_passe"]
+            'userEmail' => $_POST["email"],
+            'userMotdepasse' => $_POST["mot_de_passe"]
         ]);
         $user = $connectUser->fetch();
         if($user){
@@ -40,14 +40,14 @@ function connexionUser($pdo)
 
 function UpdateUser($pdo){
     try{
-        $query = "update utilisateurs set nom = :nom, prenom = :prenom, pseudo = :pseudo, motdepasse = :motdepasse where utilisateurId = :utilisateurId";
+        $query = "update users set userNom = :userNom, userPrenom = :userPrenom, userPseudo = :userPseudo, userMotdepasse = :userMotdepasse where userId = :userId";
         $updateUser = $pdo->prepare($query);
         $updateUser->execute([
-            'nom' => $_POST["nom"],
-            'prenom' => $_POST["prenom"],
-            'pseudo' => $_POST["pseudo"],
-            'motdepasse' => $_POST["mot_de_passe"],
-            'utilisateurId' => $_SESSION["user"]->utilisateurId
+            'userNom' => $_POST["nom"],
+            'userPrenom' => $_POST["prenom"],
+            'userPseudo' => $_POST["pseudo"],
+            'userMotdepasse' => $_POST["mot_de_passe"],
+            'userId' => $_SESSION["user"]->userId
         ]);
     }catch (PDOException $e){
         $message = $e->getMessage();
@@ -58,14 +58,27 @@ function UpdateUser($pdo){
 function UpdateSession($pdo)
 {
     try {
-        $query = "select * from utilisateurs where utilisateurId = :utilisateurId";
+        $query = "select * from users where userId = :userId";
         $connectUser = $pdo->prepare($query);
         $connectUser->execute([
-            'utilisateurId' => $_SESSION["user"]->utilisateurId
+            'userId' => $_SESSION["user"]->userId
         ]);
         $user = $connectUser->fetch();
         $_SESSION['user'] = $user;
     } catch (PDOException $e){
+        $message = $e->getMessage();
+        die($message);
+    }
+}
+
+function DeleteUser($pdo){
+    try{
+        $query = "delete from users where userId =: id";
+        $deleteUser = $pdo->prepare($query);
+        $deleteUser->execute([
+            'userId' => $_SESSION["user"]->id
+        ]);
+    } catch(PDOExeption $e){
         $message = $e->getMessage();
         die($message);
     }

@@ -102,3 +102,11 @@ footer{
 small{
     color: brown;
 }
+
+.formulaire{
+    width: 50%;
+}
+
+.input50{
+    width: 50%;
+}
