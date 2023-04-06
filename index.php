@@ -56,11 +56,14 @@
             </div>
         </div>
     </header>
+    <main>
     <?php
         require_once "Controller/sujetsController.php";
         require_once "Controller/usersController.php";
         // var_dump($_SESSION);
     ?>
+    </main>
+    
 </body>
 </html>
 

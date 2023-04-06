@@ -1,49 +1,52 @@
-<?php
-    require_once "Config/databaseConnexion.php";
-?>
-
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WBR - Accueil</title>
-    <link rel="stylesheet" href="CSS/style.css">
-    <link rel="icon" href="images/WBR.png">
-</head>
-
-<?php
-$utilisateur = "user";
-$parti = 2;
-$nomSujet = "Sujet";
-
-if($parti > 1)
-{
-    $partiPh = "participants";
-}
-else
-{
-    $partiPh = "participant";
-}
-?>
-<body>
+<a href="">
     <div class="sujet flex justify-content-space-around">
-        <div class="nomSujet flex">
-            <p><a href=""><?=$nomSujet?></a></p>
+        <div class="NomSujet flex">
+            <p>Series Netflix</p>
         </div>
-        <div class="nomUtilisateur flex">
-            <p>Créé par <a href=""><?=$utilisateur?></a></p>
-            
+        <div class="CreateurSujet flex">
+            <p>Créé par MaCl</p>
         </div>
-        <div class="nbreParticipants flex">
-            <p><?=$parti?> <?=$partiPh?></p>
+        <div class="DateSujet flex">
+            <p>06/04/2023</p>
         </div>
     </div>
-    <footer>
-        <p>Pied de page</p>
-    </footer>
-</body>
-
-</html>
-
+</a>
+<a href="">
+    <div class="sujet flex justify-content-space-around">
+        <div class="NomSujet flex">
+            <p>Fruits</p>
+        </div>
+        <div class="CreateurSujet flex">
+            <p>Créé par EvEl</p>
+        </div>
+        <div class="DateSujet flex">
+            <p>06/04/2023</p>
+        </div>
+    </div>
+</a>   
+<a href="">
+    <div class="sujet flex justify-content-space-around">
+        <div class="NomSujet flex">
+            <p>Films Netflix</p>
+        </div>
+        <div class="CreateurSujet flex">
+            <p>Créé par MaCl</p>
+        </div>
+        <div class="DateSujet flex">
+            <p>06/04/2023</p>
+        </div>
+    </div>
+</a>
+<a href="">
+    <div class="sujet flex justify-content-space-around">
+        <div class="NomSujet flex">
+            <p>Animé</p>
+        </div>
+        <div class="CreateurSujet flex">
+            <p>Créé par RaEw</p>
+        </div>
+        <div class="DateSujet flex">
+            <p>06/04/2023</p>
+        </div>
+    </div>
+</a>
