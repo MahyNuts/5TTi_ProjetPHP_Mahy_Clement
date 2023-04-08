@@ -34,7 +34,7 @@ if($uri === "/connexion"){
         header("location/profil");
     }
     elseif(isset($_POST["envoieSuppression"])){
-        deleteAllUsersSujet($pdo);
+        deleteAllUsersDebats($pdo);
         DeleteUser($pdo);
         session_destroy();
         header('location:/');

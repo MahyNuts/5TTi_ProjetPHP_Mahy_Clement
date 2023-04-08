@@ -78,6 +78,54 @@ function DeleteUser($pdo){
         $deleteUser->execute([
             'userId' => $_SESSION["user"]->id
         ]);
+        // $query = "update users set userNom = null where userId =: id";
+        // $deleteUser = $pdo->prepare($query);
+        // $deleteUser->execute([
+        //     'userId' => $_SESSION["user"]->id
+        // ]);
+        // $query = "update users set userPrenom = null where userId =: id";
+        // $deleteUser = $pdo->prepare($query);
+        // $deleteUser->execute([
+        //     'userId' => $_SESSION["user"]->id
+        // ]);
+        // $query = "update users set userEmail = null where userId =: id";
+        // $deleteUser = $pdo->prepare($query);
+        // $deleteUser->execute([
+        //     'userId' => $_SESSION["user"]->id
+        // ]);
+        // $query = "update users set userMotdepasse = null where userId =: id";
+        // $deleteUser = $pdo->prepare($query);
+        // $deleteUser->execute([
+        //     'userId' => $_SESSION["user"]->id
+        // ]);
+        // $query = "update users set userPseudo = 'Utilisateur supprimé' where userId =: id";
+        // $deleteUser = $pdo->prepare($query);
+        // $deleteUser->execute([
+        //     'userId' => $_SESSION["user"]->id
+        // ]);
+    } catch(PDOExeption $e){
+        $message = $e->getMessage();
+        die($message);
+    }
+}
+
+function deleteAllUsersDebats($pdo){
+    try{
+        $query = "delete from debat where userId =: id";
+        $deleteUser = $pdo->prepare($query);
+        $deleteUser->execute([
+            'userId' => $_SESSION["user"]->id
+        ]);
+        $query = "delete from note where userId =: id";
+        $deleteUser = $pdo->prepare($query);
+        $deleteUser->execute([
+            'userId' => $_SESSION["user"]->id
+        ]);
+        $query = "delete from sujet where userId =: id";
+        $deleteUser = $pdo->prepare($query);
+        $deleteUser->execute([
+            'userId' => $_SESSION["user"]->id
+        ]);
     } catch(PDOExeption $e){
         $message = $e->getMessage();
         die($message);
