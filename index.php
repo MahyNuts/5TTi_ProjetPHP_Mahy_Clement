@@ -17,14 +17,14 @@
     <header>
         
         <div class="menu flex justify-content-space-around">
-            <div class="menug flex">
+            <div class="menug flex justify-content-center">
                 <li class="menuLi">
-                    <a href="/" class="menuA">
+                    <a href="index.php" class="menuA">
                         Accueil
                     </a>
                 </li>
             </div>
-            <div class="flex">
+            <div class="menuC flex justify-content-center">
                 <li class="menuLi">
                     <?php if(isset($_SESSION['user'])) : ?>
                         <a href="deconnexion" class="menuA">
@@ -37,7 +37,7 @@
                     <?php endif ?>
                 </li>
             </div>
-            <div class="flex">
+            <!-- <div class="menuC flex justify-content-center">
                 <li class="menuLi">
                     <div class="search flex">
                         <input type="text" id="recherche">
@@ -46,8 +46,8 @@
                         </button>
                     </div>
                 </li>
-            </div>
-            <div class="flex">
+            </div> -->
+            <div class="menuD flex justify-content-center">
                 <li class="menuLi">
                     <a href="profil" class="menuA">
                         Profil
@@ -60,7 +60,7 @@
     <?php
         require_once "Controller/sujetsController.php";
         require_once "Controller/usersController.php";
-        // var_dump($_GET);
+        // var_dump($_SESSION);
     ?>
     </main>
     

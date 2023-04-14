@@ -3,29 +3,18 @@
 function RecupTitreSujet($pdo)
 {
     try {
-        $query = "SELECT * FROM debat inner join users on debat.debatId = users.userId";
-        $ajouteUser = $pdo->prepare($query);
-        $ajouteUser->execute();
-        $debats=$ajouteUser->fetchAll();
-        return $debats;
-    } catch (PDOException $e){
-        $message = $e->getMessage();
-        die($message);
-    }
-}
-
-function RecupDonnesUnSujet($pdo)
-{
-    try {
-        $query = "SELECT * FROM debat inner join users on debat.debatId = users.userId where debatId = :debatId";
+        $query = 'select debatTitre from debat (userNom, userPrenom, userPseudo, userEmail, userMotdepasse) values (:userNom, :userPrenom, :userPseudo, :userEmail, :userMotdepasse)';
         $ajouteUser = $pdo->prepare($query);
         $ajouteUser->execute([
-            'debatId' => $_GET["debatId"]
+            'userNom' => $_POST["nom"],
+            'userPrenom' => $_POST["prenom"],
+            'userPseudo' => $_POST["pseudo"],
+            'userEmail' => $_POST["email"],
+            'userMotdepasse' => $_POST["mot_de_passe"]
         ]);
-        $debat=$ajouteUser->fetch();
-        return $debat;
     } catch (PDOException $e){
         $message = $e->getMessage();
         die($message);
     }
+
 }

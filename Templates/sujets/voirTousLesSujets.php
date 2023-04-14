@@ -1,22 +1,52 @@
-<div class="colonne flex justify-content-space-around">
-    <li>TITRE</li>
-    <li>CREATEUR</li>
-    <li>DATE DE CREATION</li>
-</div>
-
-<?php foreach ($debats as $debat) : ?>
-
-<a href="sujet?debatId=<?= $debat->debatId ?>">
+<a href="">
     <div class="sujet flex justify-content-space-around">
         <div class="NomSujet flex">
-            <p><?= $debat->debatTitre ?></p>
+            <p>Series Netflix</p>
         </div>
         <div class="CreateurSujet flex">
-            <p><?= $debat->userPseudo ?></p>
+            <p>Créé par MaCl</p>
         </div>
         <div class="DateSujet flex">
-            <p><?= $debat->debatDate ?></p>
+            <p>06/04/2023</p>
         </div>
     </div>
 </a>
-<?php endforeach ?>
+<a href="">
+    <div class="sujet flex justify-content-space-around">
+        <div class="NomSujet flex">
+            <p>Fruits</p>
+        </div>
+        <div class="CreateurSujet flex">
+            <p>Créé par EvEl</p>
+        </div>
+        <div class="DateSujet flex">
+            <p>06/04/2023</p>
+        </div>
+    </div>
+</a>   
+<a href="">
+    <div class="sujet flex justify-content-space-around">
+        <div class="NomSujet flex">
+            <p>Films Netflix</p>
+        </div>
+        <div class="CreateurSujet flex">
+            <p>Créé par MaCl</p>
+        </div>
+        <div class="DateSujet flex">
+            <p>06/04/2023</p>
+        </div>
+    </div>
+</a>
+<a href="">
+    <div class="sujet flex justify-content-space-around">
+        <div class="NomSujet flex">
+            <p>Animé</p>
+        </div>
+        <div class="CreateurSujet flex">
+            <p>Créé par RaEw</p>
+        </div>
+        <div class="DateSujet flex">
+            <p>06/04/2023</p>
+        </div>
+    </div>
+</a>

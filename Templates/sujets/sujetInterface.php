@@ -1,1 +1,0 @@
-<h1><?= $debat->debatTitre ?></h1>
