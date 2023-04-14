@@ -1,52 +1,39 @@
-<a href="">
+<div class="flex justify-content-space-around recherche">
+    <li class="menuLi">
+        <div class="search flex">
+            <input type="text" id="recherche">
+            <button class="rech" id="recherche">
+                Rechercher
+            </button>
+        </div>
+    </li>
+</div>
+<div class="st flex justify-content-space-around">
+        <div class="elementSujetAccueil flex center">
+            <p>TITRE</p>
+        </div>
+        <div class="elementSujetAccueil flex center">
+            <p>CREATEUR</p>
+        </div>
+        <div class="elementSujetAccueil flex center">
+            <p>DATE DE CREATION</p>
+        </div>
+</div>
+
+<?php foreach ($debats as $debat) : ?>
+
+<a href="sujet?debatId=<?= $debat->debatId ?>">
     <div class="sujet flex justify-content-space-around">
-        <div class="NomSujet flex">
-            <p>Series Netflix</p>
+        <div class="elementSujetAccueil flex center">
+            <p class="uppercase"><?= $debat->debatTitre ?></p>
         </div>
-        <div class="CreateurSujet flex">
-            <p>Créé par MaCl</p>
+        <div class="elementSujetAccueil flex center">
+            <p><?= $debat->userPseudo ?></p>
         </div>
-        <div class="DateSujet flex">
-            <p>06/04/2023</p>
+        <div class="elementSujetAccueil flex center">
+            <p><?= $debat->debatDate ?></p>
         </div>
     </div>
 </a>
-<a href="">
-    <div class="sujet flex justify-content-space-around">
-        <div class="NomSujet flex">
-            <p>Fruits</p>
-        </div>
-        <div class="CreateurSujet flex">
-            <p>Créé par EvEl</p>
-        </div>
-        <div class="DateSujet flex">
-            <p>06/04/2023</p>
-        </div>
-    </div>
-</a>   
-<a href="">
-    <div class="sujet flex justify-content-space-around">
-        <div class="NomSujet flex">
-            <p>Films Netflix</p>
-        </div>
-        <div class="CreateurSujet flex">
-            <p>Créé par MaCl</p>
-        </div>
-        <div class="DateSujet flex">
-            <p>06/04/2023</p>
-        </div>
-    </div>
-</a>
-<a href="">
-    <div class="sujet flex justify-content-space-around">
-        <div class="NomSujet flex">
-            <p>Animé</p>
-        </div>
-        <div class="CreateurSujet flex">
-            <p>Créé par RaEw</p>
-        </div>
-        <div class="DateSujet flex">
-            <p>06/04/2023</p>
-        </div>
-    </div>
-</a>
+
+<?php endforeach ?>

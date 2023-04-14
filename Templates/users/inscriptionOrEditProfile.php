@@ -1,5 +1,5 @@
- 
-        <form action="" method="post">
+
+    <form class="flex justify-content-center text-align-center" action="" method="post">
             <fieldset class="formulaire">
                 <legend>S'inscrire</legend>
                 <div class="inpl">
@@ -34,3 +34,4 @@
                 </div>
             </fieldset>
         </form>
+        
