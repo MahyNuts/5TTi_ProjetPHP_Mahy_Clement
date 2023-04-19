@@ -2,9 +2,26 @@
 <div class="flex affSujetInt justify-content-space-around">
     <h1><?= $debat->debatTitre ?></h1>
 </div>
-<?php foreach ($proposition as $proposition) : ?>
-    <p>
-        <?= $proposition->$propositionNom ?>
-    </p>
-
+<div class="st flex justify-content-space-around">
+    <div class="elementSujetAccueil flex center">
+        PROPOSITIONS
+    </div>
+    <div class="elementSujetAccueil flex center">
+        NOTE TOTALE
+    </div>
+</div>
+<?php foreach ($propositions as $proposition) : ?>
+    <!-- <div class="st flex justify-content-space-around">
+        <div class="elementSujetAccueil flex center">
+            <?= $proposition->propositionNom ?>
+        </div>
+    </div> -->
+    <div class="st flex justify-content-space-around">
+        <div class="elementSujetAccueil flex center">
+            <?= $proposition->propositionNom ?>
+        </div>
+        <div class="elementSujetAccueil flex center">
+            <?= $proposition->propositionNoteTotale ?>  
+        </div>
+    </div>
 <?php endforeach ?>

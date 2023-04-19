@@ -1,12 +1,17 @@
 <div class="flex justify-content-space-around recherche">
-    <li class="menuLi">
         <div class="search flex">
             <input type="text" id="recherche">
             <button class="rech" id="recherche">
                 Rechercher
             </button>
         </div>
-    </li>
+        <?php if (isset($_SESSION["user"])) : ?>
+            <div class="flex">
+                <a href="/creation-de-sujet" class="menuA">
+                        Créer un sujet
+                </a>
+            </div>
+        <?php endif ?>
 </div>
 <div class="st flex justify-content-space-around">
         <div class="elementSujetAccueil flex center">
