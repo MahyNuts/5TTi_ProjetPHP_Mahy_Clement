@@ -16,9 +16,13 @@ elseif (str_contains($uri, '/sujet?debatId=')){
 elseif($uri === "/creation-de-sujet"){
     $categories = RecupCategories($pdo);
     if(isset($_POST["envoieInfosSujet"])){
-        createSujet($pdo);
-        createProposition($pdo);
-        header("");
+        var_dump($_POST);
+        createDebat($pdo);
+        $debatId = $pdo->lastInsertId();
+        var_dump($debatId);
+        /*createProposition($pdo);
+        lierDebatProposition($pdo);
+        header("location:/");*/
     }
     require_once "Templates/sujets/createSujet.php";
 }

@@ -8,7 +8,7 @@
         <?php if (isset($_SESSION["user"])) : ?>
             <div class="flex">
                 <a href="/creation-de-sujet" class="menuA">
-                        Créer un sujet
+                        Créer un débat
                 </a>
             </div>
         <?php endif ?>

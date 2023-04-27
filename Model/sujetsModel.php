@@ -60,7 +60,7 @@ function AppelPropositions($pdo)
     }
 }
 
-function createSujet($pdo)
+function createDebat($pdo)
 {
     try {
         $dateActu = date("Y-m-d");
@@ -68,9 +68,9 @@ function createSujet($pdo)
         $ajouteSujet = $pdo->prepare($query);
         $ajouteSujet->execute([
             'debatTitre' => $_POST["CRtitreSujet"],
-            'debatNote' => null,
+            'debatNote' => 0,
             'userId' => $_SESSION["user"]->userId,
-            'debatDate' => $dateActu,
+            'debatDate' => $dateActu
         ]);
     } catch (PDOException $e){
         $message = $e->getMessage();
@@ -81,7 +81,7 @@ function createSujet($pdo)
 function createProposition($pdo)
 {
     try{
-        $query = 'insert into proposition(propositionNom, userId, propositionNoteTotale) values (propositionNom, userId, propositionNoteTotale)';
+        $query = 'insert into proposition(propositionNom, userId, propositionNoteTotale) values (:propositionNom, :userId, :propositionNoteTotale)';
         $ajouteProposition = $pdo->prepare($query);
         $ajouteProposition->execute([
             'propositionNom' => $_POST['CRpropositionSujet'],
@@ -96,7 +96,7 @@ function createProposition($pdo)
 
 function lierDebatProposition($pdo){
     try{
-        $query = 'insert into debat_proposition(debatId, propositionId) values (:debatId, propositionId)';
+        $query = 'insert into debat_proposition(debatId, propositionId) values (:debatId, :propositionId)';
         $lierDebProp = $pdo->prepare($query);
         $lierDebProp->execute([
             'debatId' => $_POST('debatId') ,
@@ -108,6 +108,19 @@ function lierDebatProposition($pdo){
     }
 }
 
+function catégorieDebat($pdo){
+    try{
+        $query = 'insert into debat_sujet(debatId, sujetId) values (:debatId, :sujetId)';
+        $lierDebProp = $pdo->prepare($query);
+        $lierDebProp->execute([
+            'debatId' => $_POST('debatId') ,
+            'sujetId' => $_POST('')
+        ]);
+    } catch (PDOException $e){
+        $message = $e->getMessage();
+        die($message);
+    }
+}
 
          
     
