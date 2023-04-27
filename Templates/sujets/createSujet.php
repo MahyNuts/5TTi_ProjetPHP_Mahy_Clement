@@ -11,9 +11,10 @@
                 </div>
                 <div class="inpl">
                     <label for="catégorie">Catégorie</label>
+                    <br>
                     <select name="CRsujetSujet" id="CRsujetSujet" class="input50">
-                        <?php foreach($categories as $categorie) : ?> 
-                            <option value="<?= $categorie->sujetNom ?>"><?= $categorie->sujetNom ?></option>
+                        <?php foreach($categories as $categorie) : ?>
+                            <option class="input50" value="<?= $categorie->sujetId ?>"><?= $categorie->sujetNom ?></option>
                         <?php endforeach ?>
                     </select>
                 </div>

@@ -45,6 +45,13 @@ input{
     width: 100%;
 }
 
+select{
+    background: gray;
+    padding:5px;
+    color: whitesmoke;
+    width: 102%;
+}
+
 .rech{
     background-color: gray;
     color: whitesmoke;

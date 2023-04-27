@@ -1,12 +1,12 @@
  <?php
  
-function RecupTitreSujet($pdo)
+function RecupSujets($pdo)
 {
     try {
         $query = "select * from debat inner join users on debat.debatId = users.userId";
-        $recupTitre = $pdo->prepare($query);
-        $recupTitre->execute();
-        $debats=$recupTitre->fetchAll();
+        $recupSujets = $pdo->prepare($query);
+        $recupSujets->execute();
+        $debats=$recupSujets->fetchAll();
         return $debats;
     } catch (PDOException $e){
         $message = $e->getMessage();
@@ -33,7 +33,7 @@ function RecupDonnesUnSujet($pdo)
 function RecupCategories($pdo)
 {
     try{
-        $query = "select sujetNom from sujet";
+        $query = "select * from sujet";
         $recupCat = $pdo->prepare($query);
         $recupCat->execute();
         $categories=$recupCat->fetchAll();
@@ -81,7 +81,7 @@ function createSujet($pdo)
 function createProposition($pdo)
 {
     try{
-        $query = 'insert into proposition(propositionNom, userId, propositionNoteTotale) values (:propositionNom, userId, propositionNoteTotale)';
+        $query = 'insert into proposition(propositionNom, userId, propositionNoteTotale) values (propositionNom, userId, propositionNoteTotale)';
         $ajouteProposition = $pdo->prepare($query);
         $ajouteProposition->execute([
             'propositionNom' => $_POST['CRpropositionSujet'],
