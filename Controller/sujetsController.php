@@ -17,12 +17,28 @@ elseif($uri === "/creation-de-sujet"){
     $categories = RecupCategories($pdo);
     if(isset($_POST["envoieInfosSujet"])){
         var_dump($_POST);
-        createDebat($pdo);
+        // createDebat($pdo);
         $debatId = $pdo->lastInsertId();
         var_dump($debatId);
-        /*createProposition($pdo);
-        lierDebatProposition($pdo);
-        header("location:/");*/
+        header('location:/ajout-propositions');
     }
     require_once "Templates/sujets/createSujet.php";
+}
+elseif($uri === "/ajout-propositions"){
+    if(isset($_POST["confirmPropo"])){
+        header('location:/');
+    }
+    elseif(isset($_POST["ajoutPropo"])){
+        header('location:/ajout-proposition');
+    }
+    require_once "Templates/sujets/addProposition.php";
+}
+elseif($uri === "/ajout-proposition"){
+    if(isset($_POST["confirmPropo"])){
+        header('location:/');
+    }
+    elseif(isset($_POST["ajoutPropo"])){
+        header('location:/ajout-proposition');
+    }
+    require_once "Templates/sujets/addSuppProposition.php";
 }

@@ -179,3 +179,12 @@ label{
 .grosTitre{
     font-family: 'Shadows Into Light';
 }
+
+.justify-content-space-between{
+    justify-content: space-between;
+}
+
+.bouttonsPropo{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}

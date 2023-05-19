@@ -68,7 +68,7 @@ function createDebat($pdo)
         $ajouteSujet = $pdo->prepare($query);
         $ajouteSujet->execute([
             'debatTitre' => $_POST["CRtitreSujet"],
-            'debatNote' => 0,
+            'debatNote' => null,
             'userId' => $_SESSION["user"]->userId,
             'debatDate' => $dateActu
         ]);
@@ -108,7 +108,7 @@ function lierDebatProposition($pdo){
     }
 }
 
-function catégorieDebat($pdo){
+function categorieDebat($pdo){
     try{
         $query = 'insert into debat_sujet(debatId, sujetId) values (:debatId, :sujetId)';
         $lierDebProp = $pdo->prepare($query);
