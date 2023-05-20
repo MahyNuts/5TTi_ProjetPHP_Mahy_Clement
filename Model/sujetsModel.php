@@ -3,7 +3,7 @@
 function RecupSujets($pdo)
 {
     try {
-        $query = "select * from debat inner join users on debat.debatId = users.userId";
+        $query = "select * from debat inner join users on debat.userId = users.userId";
         $recupSujets = $pdo->prepare($query);
         $recupSujets->execute();
         $debats=$recupSujets->fetchAll();
@@ -47,7 +47,7 @@ function RecupCategories($pdo)
 function AppelPropositions($pdo)
 {
     try {
-        $query = "SELECT * FROM proposition INNER JOIN debat_proposition ON proposition.propositionId = debat_proposition.propositionId INNER JOIN debat ON debat.debatId = debat_proposition.debatId WHERE debat.debatId = :debatId;";
+        $query = "SELECT * FROM proposition WHERE debatId = :debatId;";
         $AppelProp = $pdo->prepare($query);
         $AppelProp->execute([
             'debatId' => $_GET["debatId"]
@@ -78,29 +78,31 @@ function createDebat($pdo)
     }
 }
 
-function createProposition($pdo)
+function createProposition($pdo,$i)
 {
     try{
-        $query = 'insert into proposition(propositionNom, userId, propositionNoteTotale) values (:propositionNom, :userId, :propositionNoteTotale)';
+        $query = 'insert into proposition(propositionNom, userId, propositionNoteTotale, debatId) values (:propositionNom, :userId, :propositionNoteTotale, :debatId)';
         $ajouteProposition = $pdo->prepare($query);
         $ajouteProposition->execute([
-            'propositionNom' => $_POST['CRpropositionSujet'],
+            'propositionNom' => $_POST['Proposition'.$i],
             'userId' => $_SESSION["user"]->userId,
-            'propositionNoteTotale' => null
+            'propositionNoteTotale' => null,
+            'debatId' => $_SESSION['debatId']
+
         ]);
     } catch (PDOException $e){
         $message = $e->getMessage();
         die($message);
     }
 }
-
-function lierDebatProposition($pdo){
+function relieSujet($pdo, $sujetId)
+{
     try{
-        $query = 'insert into debat_proposition(debatId, propositionId) values (:debatId, :propositionId)';
-        $lierDebProp = $pdo->prepare($query);
-        $lierDebProp->execute([
-            'debatId' => $_POST('debatId') ,
-            'propositionId' => $_POST('propositionId')
+        $query = 'insert into debat_sujet(debatId, sujetId) values (:debatId, :sujetId)';
+        $ajouteProposition = $pdo->prepare($query);
+        $ajouteProposition->execute([
+            'sujetId' => $sujetId,
+            'debatId' => $_SESSION['debatId']
         ]);
     } catch (PDOException $e){
         $message = $e->getMessage();

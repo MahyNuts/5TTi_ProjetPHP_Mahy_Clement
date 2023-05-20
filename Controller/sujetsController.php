@@ -13,13 +13,17 @@ elseif (str_contains($uri, '/sujet?debatId=')){
     $propositions = AppelPropositions($pdo);
     require_once "Templates/sujets/sujetInterface.php";
 }
+//creation de debat
 elseif($uri === "/creation-de-sujet"){
     $categories = RecupCategories($pdo);
     if(isset($_POST["envoieInfosSujet"])){
-        var_dump($_POST);
-        // createDebat($pdo);
-        $debatId = $pdo->lastInsertId();
-        var_dump($debatId);
+        createDebat($pdo);
+        $_SESSION['debatId'] = $pdo->lastInsertId();
+
+        foreach($_POST['CRsujetSujet'] as $sujet) {
+            relieSujet($pdo, $sujet);
+        }
+
         header('location:/ajout-propositions');
     }
     require_once "Templates/sujets/createSujet.php";
@@ -27,18 +31,29 @@ elseif($uri === "/creation-de-sujet"){
 elseif($uri === "/ajout-propositions"){
     if(isset($_POST["confirmPropo"])){
         header('location:/');
+        for ($i=1; $i <= 2; $i++) { 
+            createProposition($pdo,$i);
+            
+        }
     }
     elseif(isset($_POST["ajoutPropo"])){
         header('location:/ajout-proposition');
+        for ($i=1; $i <= 2; $i++) { 
+            createProposition($pdo,$i);
+            
+        }
     }
+
     require_once "Templates/sujets/addProposition.php";
 }
 elseif($uri === "/ajout-proposition"){
     if(isset($_POST["confirmPropo"])){
         header('location:/');
+        createProposition($pdo,'3');
     }
     elseif(isset($_POST["ajoutPropo"])){
         header('location:/ajout-proposition');
+        createProposition($pdo,'3');
     }
     require_once "Templates/sujets/addSuppProposition.php";
 }

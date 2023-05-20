@@ -3,7 +3,7 @@
         <legend class="flex justify-content-center">Ajouter une proposition</legend>
         <div class="inpl">
             <label for="InProp">Proposition</label>
-            <input type="text" id="InProp" name="InProp" class="input50">
+            <input type="text" id="Proposition3" name="Proposition3" class="input50">
         </div>
         <div class="flex bouttonsPropo justify-content-space-between">
             <div>

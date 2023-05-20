@@ -3,11 +3,11 @@
         <legend class="flex justify-content-center">Ajouter des propositions</legend>
         <div class="inpl">
             <label for="InProp">Première proposition</label>
-            <input type="text" id="InProp" name="InProp" class="input50">
+            <input type="text" id="Proposition1" name="Proposition1" class="input50">
         </div>
         <div class="inpl">
             <label for="InProp">Deuxième proposition</label>
-            <input type="text" id="InProp" name="InProp" class="input50">
+            <input type="text" id="Proposition2" name="Proposition2" class="input50">
         </div>
         <div class="flex bouttonsPropo justify-content-space-between">
             <div>
