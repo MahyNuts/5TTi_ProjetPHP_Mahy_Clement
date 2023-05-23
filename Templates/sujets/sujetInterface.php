@@ -1,4 +1,4 @@
-
+<form method="post">
 <div class="flex affSujetInt justify-content-space-around">
     <h1 class="grosTitre"><?= $debat->debatTitre ?></h1>
 </div>
@@ -26,10 +26,11 @@
             <?php endif ?>
         </div>
         <div class="elementSujetAccueil flex center">
-                <input type="number" class="notePerso" value="0" min="0" max="10">
+                <input type="number" name="notePerso[<?= $proposition->propositionId ?>]" class="notePerso" value="0" min="0" max="10">
         </div>
     </div>
 <?php endforeach ?>
 <div class="flex justify-content-space-around">
     <button type="submit" name="envoieNotes">Envoyer</button>
 </div>
+</form>

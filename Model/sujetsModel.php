@@ -115,7 +115,7 @@ function categorieDebat($pdo){
         $query = 'insert into debat_sujet(debatId, sujetId) values (:debatId, :sujetId)';
         $lierDebProp = $pdo->prepare($query);
         $lierDebProp->execute([
-            'debatId' => $_POST('debatId') ,
+            'debatId' => $_POST('debatId'),
             'sujetId' => $_POST('')
         ]);
     } catch (PDOException $e){
@@ -124,6 +124,22 @@ function categorieDebat($pdo){
     }
 }
 
+function ajoutNote($pdo, $propositionId, $note){
+    try{
+        $query = 'insert into note(noteDate, note, userId, debatId, propositionId) values (:noteDate, :note, :userId, :debatId, :propositionId)';
+        $ajoutDeProp = $pdo->prepare($query);
+        $ajoutDeProp->execute([
+            'noteDate' => date("Y-m-d H:i:s"),
+            'note' => $note,
+            'userId' => $_SESSION["user"]->userId,
+            'debatId' => $_GET['debatId'],
+            'propositionId' => $propositionId
+        ]);
+    } catch (PDOException $e){
+        $message = $e->getMessage();
+        die($message);
+    } 
+}
          
     
 

@@ -9,6 +9,13 @@ if($uri === '/index.php' || $uri === '/'){
     require_once "Templates/sujets/voirTousLesSujets.php";
 }
 elseif (str_contains($uri, '/sujet?debatId=')){
+    if (isset($_POST['envoieNotes'])) {
+        foreach($_POST['notePerso'] as $propositionId => $note) {
+
+            ajoutNote($pdo, $propositionId, $note);
+        }
+    }
+
     $debat = RecupDonnesUnSujet($pdo);
     $propositions = AppelPropositions($pdo);
     require_once "Templates/sujets/sujetInterface.php";
