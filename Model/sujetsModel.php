@@ -141,5 +141,5 @@ function ajoutNote($pdo, $propositionId, $note){
     } 
 }
          
-    
+
 

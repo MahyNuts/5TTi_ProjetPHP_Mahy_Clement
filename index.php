@@ -51,6 +51,15 @@
                     </li>
                 </div>
             <?php endif ?>
+            <?php if (isset($_SESSION["user"])) : ?>
+                <div class="flex">
+                    <li class="menuLi">               
+                        <a href="discuter" class="menuA">
+                            Discuter
+                        </a>
+                    </li>
+                </div>
+            <?php endif ?>
         </div>
     </header>
     <main>

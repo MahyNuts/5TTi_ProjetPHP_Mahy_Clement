@@ -132,7 +132,57 @@ function deleteAllUsersDebats($pdo){
     }
 }
 
+function appelUsers($pdo){
+    try{
+        $query = "select * from users where userId != :userId";
+        $recupUsers = $pdo->prepare($query);
+        $recupUsers->execute([
+            'userId' => $_SESSION["user"]->userId
+        ]);
+        $users=$recupUsers->fetchAll();
+        return $users;
+    } catch(PDOExeption $e){
+        $message = $e->getMessage();
+        die($message);
+    }
     
+}
+
+function creerConversation($pdo){
+    try{
+        $query = "insert into conversation (conversationType) values (:conversationType)";
+        $creerConv = $pdo->prepare($query);
+        $creerConv->execute([
+            'conversationType' => "binaire"
+        ]);
+        $query = "insert into utilisateur_conversationId (conversationId, userId) values (:conversationId, :userId)";
+        $lierUserConv = $pdo->prepare($query);
+        $lierUserConv->execute([
+            'conversationId' => $_GET['conversationId'],
+            'userId' => $_SESSION["user"]->userId
+        ]);
+    } catch(PDOExeption $e){
+        $message = $e->getMessage();
+        die($message);
+    }
+}
+
+function envoyerMessage($pdo){
+    try{
+        $query = "insert into message (messageText, messageDate, messageHeure, conversationId, userId) values (:messageText, :messageDate, :messageHeure, :conversationId, :userId)";
+        $creerMessage = $pdo->prepare($query);
+        $creerMessage->execute([
+            'messageText' => $_POST["message"],
+            'messageDate' => date("Y-m-d H:i:s"),
+            'messageHeure' => time(),
+            'conversationId' => $_GET["conversationId"],
+            'userId' => $_GET["userId"]
+        ]);
+    } catch(PDOExeption $e){
+        $message = $e->getMessage();
+        die($message);
+    }
+}
 
 
     

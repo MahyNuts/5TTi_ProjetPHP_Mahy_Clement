@@ -11,7 +11,6 @@ if($uri === '/index.php' || $uri === '/'){
 elseif (str_contains($uri, '/sujet?debatId=')){
     if (isset($_POST['envoieNotes'])) {
         foreach($_POST['notePerso'] as $propositionId => $note) {
-
             ajoutNote($pdo, $propositionId, $note);
         }
     }

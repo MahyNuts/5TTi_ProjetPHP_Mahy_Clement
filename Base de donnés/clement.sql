@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
 --
--- Host: localhost    Database: clement
+-- Host: 10.10.51.252    Database: clement
 -- ------------------------------------------------------
--- Server version	8.0.32
+-- Server version	8.0.27
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -14,6 +14,29 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `conversation`
+--
+
+DROP TABLE IF EXISTS `conversation`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `conversation` (
+  `conversationId` int NOT NULL AUTO_INCREMENT,
+  `conversationType` enum('binaire','groupe') DEFAULT NULL,
+  PRIMARY KEY (`conversationId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `conversation`
+--
+
+LOCK TABLES `conversation` WRITE;
+/*!40000 ALTER TABLE `conversation` DISABLE KEYS */;
+/*!40000 ALTER TABLE `conversation` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `debat`
@@ -45,6 +68,35 @@ INSERT INTO `debat` VALUES (1,'Fruits',NULL,2,'2024-04-14'),(2,'Series Netflix',
 UNLOCK TABLES;
 
 --
+-- Table structure for table `debat_proposition`
+--
+
+DROP TABLE IF EXISTS `debat_proposition`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `debat_proposition` (
+  `debatPropositionId` int NOT NULL AUTO_INCREMENT,
+  `debatId` int NOT NULL,
+  `propositionId` int NOT NULL,
+  PRIMARY KEY (`debatPropositionId`),
+  KEY `debatId` (`debatId`),
+  KEY `propositionId` (`propositionId`),
+  CONSTRAINT `debat_proposition_ibfk_1` FOREIGN KEY (`debatId`) REFERENCES `debat` (`debatId`),
+  CONSTRAINT `debat_proposition_ibfk_2` FOREIGN KEY (`propositionId`) REFERENCES `proposition` (`propositionId`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `debat_proposition`
+--
+
+LOCK TABLES `debat_proposition` WRITE;
+/*!40000 ALTER TABLE `debat_proposition` DISABLE KEYS */;
+INSERT INTO `debat_proposition` VALUES (1,1,1),(2,2,2),(3,4,3),(4,6,4),(5,7,5);
+/*!40000 ALTER TABLE `debat_proposition` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `debat_sujet`
 --
 
@@ -71,6 +123,33 @@ LOCK TABLES `debat_sujet` WRITE;
 /*!40000 ALTER TABLE `debat_sujet` DISABLE KEYS */;
 INSERT INTO `debat_sujet` VALUES (1,1,2),(2,2,1),(3,3,1),(4,4,1),(5,5,1),(6,6,1),(7,7,4),(8,8,4),(9,9,4),(10,10,1),(11,11,1),(12,19,1),(13,19,2);
 /*!40000 ALTER TABLE `debat_sujet` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `message`
+--
+
+DROP TABLE IF EXISTS `message`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `message` (
+  `messageId` int NOT NULL AUTO_INCREMENT,
+  `messageText` text,
+  `messageDate` date DEFAULT NULL,
+  `messageHeure` time DEFAULT NULL,
+  `conversationId` int DEFAULT NULL,
+  `userId` int DEFAULT NULL,
+  PRIMARY KEY (`messageId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `message`
+--
+
+LOCK TABLES `message` WRITE;
+/*!40000 ALTER TABLE `message` DISABLE KEYS */;
+/*!40000 ALTER TABLE `message` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -187,6 +266,30 @@ LOCK TABLES `users` WRITE;
 INSERT INTO `users` VALUES (1,'Mahy','Clément','MaCl','macl@table.com','macl'),(2,'Evrard','Elias','EvEl','evel@table.com','evel'),(3,'Grootaers','Romane','GrRo','grro@table.com','grro'),(4,'Ramsamy','Ewan','RaEw','raew@table.com','raew'),(5,'Cara','Jayson','CaJa','caja@table.com','caja');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `utilisateur_conversation`
+--
+
+DROP TABLE IF EXISTS `utilisateur_conversation`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `utilisateur_conversation` (
+  `utilisateurConversationId` int NOT NULL AUTO_INCREMENT,
+  `conversationId` int DEFAULT NULL,
+  `userId` int DEFAULT NULL,
+  PRIMARY KEY (`utilisateurConversationId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `utilisateur_conversation`
+--
+
+LOCK TABLES `utilisateur_conversation` WRITE;
+/*!40000 ALTER TABLE `utilisateur_conversation` DISABLE KEYS */;
+/*!40000 ALTER TABLE `utilisateur_conversation` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -197,4 +300,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-23 21:37:54
+-- Dump completed on 2023-05-25 16:21:51

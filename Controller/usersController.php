@@ -31,7 +31,7 @@ if($uri === "/connexion"){
     {
         UpdateUser($pdo);
         UpdateSession($pdo);
-        header("location/profil");
+        header("location:/profil");
     }
     elseif(isset($_POST["envoieSuppression"])){
         deleteAllUsersDebats($pdo);
@@ -40,6 +40,16 @@ if($uri === "/connexion"){
         header('location:/');
     }
     require_once "Templates/users/inscriptionOrEditProfile.php";
+} elseif($uri === "/discuter"){
+    $users = appelUsers($pdo);
+    require_once "Templates/users/discussion.php";
+    
+}elseif(str_contains($uri, '/conversation?userId=')){
+    if (isset($_POST['envoieNotes'])){
+        envoyerMessage($pdo);
+        header("location:/");
+    }
+    require_once "Templates/users/conversation.php";
 }
 
 function verifEmptyData(){
