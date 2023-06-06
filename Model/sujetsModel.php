@@ -140,6 +140,20 @@ function ajoutNote($pdo, $propositionId, $note){
         die($message);
     } 
 }
-         
+       
+
+function verifNoteUser($pdo){
+    try{
+        $query = 'SELECT * FROM note where userId = :userId and debatId = :debatId';
+        $noteUser = $pdo->prepare($query);
+        $noteUser->execute([
+            'userId' => $_SESSION['user']->userId,
+            'debatId' => $_GET['debatId']
+        ]);
+    }catch (PDOException $e){
+        $message = $e->getMessage();
+        die($message);
+    }
+}
 
 
