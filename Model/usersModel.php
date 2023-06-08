@@ -6,11 +6,11 @@ function createUser($pdo)
         $query = 'insert into users(userNom, userPrenom, userPseudo, userEmail, userMotdepasse) values (:userNom, :userPrenom, :userPseudo, :userEmail, :userMotdepasse)';
         $ajouteUser = $pdo->prepare($query);
         $ajouteUser->execute([
-            'userNom' => $_POST["nom"],
-            'userPrenom' => $_POST["prenom"],
-            'userPseudo' => $_POST["pseudo"],
-            'userEmail' => $_POST["email"],
-            'userMotdepasse' => $_POST["mot_de_passe"]
+            'userNom' => htmlentities($_POST["nom"]),
+            'userPrenom' => htmlentities($_POST["prenom"]),
+            'userPseudo' => htmlentities($_POST["pseudo"]),
+            'userEmail' => htmlentities($_POST["email"]),
+            'userMotdepasse' => htmlentities($_POST["mot_de_passe"])
         ]);
     } catch (PDOException $e){
         $message = $e->getMessage();
@@ -25,8 +25,8 @@ function connexionUser($pdo)
         $query = "select * from users where userEmail = :userEmail and userMotdepasse = :userMotdepasse";
         $connectUser = $pdo->prepare($query);
         $connectUser->execute([
-            'userEmail' => $_POST["email"],
-            'userMotdepasse' => $_POST["mot_de_passe"]
+            'userEmail' => htmlentities($_POST["email"]),
+            'userMotdepasse' => htmlentities($_POST["mot_de_passe"])
         ]);
         $user = $connectUser->fetch();
         if($user){
@@ -43,10 +43,10 @@ function UpdateUser($pdo){
         $query = "update users set userNom = :userNom, userPrenom = :userPrenom, userPseudo = :userPseudo, userMotdepasse = :userMotdepasse where userId = :userId";
         $updateUser = $pdo->prepare($query);
         $updateUser->execute([
-            'userNom' => $_POST["nom"],
-            'userPrenom' => $_POST["prenom"],
-            'userPseudo' => $_POST["pseudo"],
-            'userMotdepasse' => $_POST["mot_de_passe"],
+            'userNom' => htmlentities($_POST["nom"]),
+            'userPrenom' => htmlentities($_POST["prenom"]),
+            'userPseudo' => htmlentities($_POST["pseudo"]),
+            'userMotdepasse' => htmlentities($_POST["mot_de_passe"]),
             'userId' => $_SESSION["user"]->userId
         ]);
     }catch (PDOException $e){
@@ -172,7 +172,7 @@ function envoyerMessage($pdo){
         $query = "insert into message (messageText, messageDate, messageHeure, conversationId, userId) values (:messageText, :messageDate, :messageHeure, :conversationId, :userId)";
         $creerMessage = $pdo->prepare($query);
         $creerMessage->execute([
-            'messageText' => $_POST["message"],
+            'messageText' => htmlentities($_POST["message"]),
             'messageDate' => date("Y-m-d H:i:s"),
             'messageHeure' => time(),
             'conversationId' => $_GET["conversationId"],

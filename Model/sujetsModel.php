@@ -67,7 +67,7 @@ function createDebat($pdo)
         $query = 'insert into debat(debatTitre, debatNote, userId, debatDate) values (:debatTitre, :debatNote, :userId, :debatDate)';
         $ajouteSujet = $pdo->prepare($query);
         $ajouteSujet->execute([
-            'debatTitre' => $_POST["CRtitreSujet"],
+            'debatTitre' => htmlentities($_POST["CRtitreSujet"]),
             'debatNote' => null,
             'userId' => $_SESSION["user"]->userId,
             'debatDate' => $dateActu
@@ -84,7 +84,7 @@ function createProposition($pdo,$i)
         $query = 'insert into proposition(propositionNom, userId, propositionNoteTotale, debatId) values (:propositionNom, :userId, :propositionNoteTotale, :debatId)';
         $ajouteProposition = $pdo->prepare($query);
         $ajouteProposition->execute([
-            'propositionNom' => $_POST['Proposition'.$i],
+            'propositionNom' => htmlentities($_POST['Proposition'.$i]),
             'userId' => $_SESSION["user"]->userId,
             'propositionNoteTotale' => null,
             'debatId' => $_SESSION['debatId']
@@ -115,8 +115,8 @@ function categorieDebat($pdo){
         $query = 'insert into debat_sujet(debatId, sujetId) values (:debatId, :sujetId)';
         $lierDebProp = $pdo->prepare($query);
         $lierDebProp->execute([
-            'debatId' => $_POST('debatId'),
-            'sujetId' => $_POST('')
+            'debatId' => htmlentities($_POST('debatId')),
+            'sujetId' => htmlentities($_POST(''))
         ]);
     } catch (PDOException $e){
         $message = $e->getMessage();
